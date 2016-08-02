@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+
+	<Properties>
+		<Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c - %m%n</Property>
+		<Property name="CONSOLE_PATTERN">%d{HH:mm:ss,SSS} %5p %l - %m%n</Property>
+		<Property name="LOG_DIR">${sys:catalina.home}/logs/spring</Property>
+	</Properties>
+
+	<!-- Appender -->
+	<Appenders>
+		<Console name="stdout" target="SYSTEM_OUT">
+			<PatternLayout pattern="${CONSOLE_PATTERN}" />
+		</Console>
+<!-- 
+		<RollingRandomAccessFile name="appLog" fileName="${LOG_DIR}/app.log" filePattern="${LOG_DIR}/app-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${PATTERN}" />
+			<TimeBasedTriggeringPolicy interval="24" />
+		</RollingRandomAccessFile>
+
+		<RollingRandomAccessFile name="errorLog" fileName="${LOG_DIR}/error.log" filePattern="${LOG_DIR}/error-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${PATTERN}" />
+			<TimeBasedTriggeringPolicy interval="24" />
+		</RollingRandomAccessFile>-->
+	</Appenders> 
+
+	<!-- Logger -->
+	<Loggers>
+		<Root>
+			<AppenderRef ref="stdout" level="error" />
+		</Root>
+
+		<Logger name="com.spring" level="debug">
+			<AppenderRef ref="stdout" level="info" />
+			<AppenderRef ref="stdout" />
+		</Logger>
+	</Loggers>
+</Configuration>
